@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Unicorns</string>
+    <string name="unicorns">Unicorns</string>
+    <string name="create_a_unicorn">Create a Unicorn</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="color">Color</string>
+
+    <string-array name="colors">
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Purple</item>
+        <item>White</item>
+        <item>Yellow</item>
+    </string-array>
 </resources>

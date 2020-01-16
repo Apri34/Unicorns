@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.unicorns.unicorns.interfaces.IMainActivity"/>
+
+        <variable
+            name="iMainActivity"
+            type="com.unicorns.unicorns.interfaces.IMainActivity" />
+        <variable
+            name="editTextName"
+            type="android.widget.EditText" />
+        <variable
+            name="editTextAge"
+            type="android.widget.EditText" />
+        <variable
+            name="spinnerColor"
+            type="android.widget.Spinner" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:id="@+id/text_view_create_unicorn_fragment_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_a_unicorn"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout_create_unicorn_fragment_fields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_view_create_unicorn_fragment_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name"/>
+
+            <EditText
+                android:id="@+id/edit_text_create_unicorn_fragment_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/text_view_create_unicorn_fragment_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/age"
+                android:layout_marginTop="16dp"/>
+
+            <EditText
+                android:id="@+id/edit_text_create_unicorn_fragment_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/text_view_create_unicorn_fragment_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/color"
+                android:layout_marginTop="16dp"/>
+
+            <Spinner
+                android:id="@+id/spinner_create_unicorn_fragment_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/colors"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/button_main_fragment_create_unicorn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check_black_36dp"
+            android:background="@drawable/background_button"
+            android:padding="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="@null"
+            android:onClick="@{() -> iMainActivity.createUnicorn(editTextName.getText().toString(), editTextAge.getText().toString(), spinnerColor.getSelectedItem().toString())}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
