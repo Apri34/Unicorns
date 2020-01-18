@@ -12,7 +12,6 @@ This project uses the Gradle build system. To build this project, use the gradle
 * [GreenDao](http://greenrobot.org/greendao/) to create the local database.
 * [RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview)
 * [Volley](https://developer.android.com/training/volley) for HTTP requests
-* [Gson](https://github.com/square/retrofit/tree/master/retrofit-converters/gson) for easy conversion from JSON to Java Model class
 * [Livecycle Extension](https://developer.android.com/jetpack/androidx/releases/lifecycle) to use ViewModel class for MVVM architecture
 
 ## Backend Webserver
