@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.unicorns.unicorns"
-        minSdkVersion 15
+        minSdkVersion 20
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -37,8 +37,6 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.2'
 
     implementation 'com.android.volley:volley:1.1.1'
-
-    implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'

@@ -6,8 +6,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import com.google.gson.GsonBuilder;
 import com.unicorns.unicorns.database.Unicorn;
+import com.unicorns.unicorns.utils.JsonFormatter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,26 +38,33 @@ public class ConfirmDeleteDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
         //Get deserialized Unicorn
         String jsonUnicorn = getArguments() != null ? getArguments().getString(KEY_UNICORN) : "";
-        final Unicorn unicorn = new GsonBuilder().create().fromJson(jsonUnicorn, Unicorn.class);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("Are you sure you want to delete " + unicorn.getName() + "?")
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(listener != null) {
-                            listener.deleteUnicorn(unicorn);
+        final Unicorn unicorn;
+        try {
+            unicorn = JsonFormatter.getUnicornFromLocalJsonObject(new JSONObject(jsonUnicorn));
+            builder.setMessage("Are you sure you want to delete " + unicorn.getName() + "?")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if(listener != null) {
+                                listener.deleteUnicorn(unicorn);
+                            }
                         }
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    })
+                    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                });
+                        }
+                    });
+        } catch (JSONException e) {
+            e.printStackTrace();
+            dismiss();
+        }
+
         return builder.create();
     }
 

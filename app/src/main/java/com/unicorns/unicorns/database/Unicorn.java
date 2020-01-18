@@ -7,27 +7,26 @@ import com.unicorns.unicorns.utils.ColorUtil;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
-import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Property;
-
-import java.util.UUID;
 
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.BindingAdapter;
+import org.greenrobot.greendao.annotation.Generated;
+
+import java.util.UUID;
 
 /**
  * Unicorn Model created by Andreas Pribitzer 13.01.2020
- * This class is used as both the Entity for the local SQLite database and for Json-Pojo conversion with Gson
+ * This class is used as both the Entity for the local SQLite database and for Json-Pojo conversion
  */
 
 @Entity
 public class Unicorn {
 
     @Id
-    @NotNull
-    @Property(nameInDb = "_id")
-    private String _id;
+    @Property(nameInDb = "id")
+    private String id;
 
     @NotNull
     @Property(nameInDb = "name")
@@ -41,15 +40,9 @@ public class Unicorn {
     @Property(nameInDb = "colour")
     private String colour;
 
-    //Method to generate unique id
-    public void generateId() {
-        _id = UUID.randomUUID().toString();
-    }
-
-    @Generated(hash = 1160137022)
-    public Unicorn(@NotNull String _id, @NotNull String name, int age,
-            @NotNull String colour) {
-        this._id = _id;
+    @Generated(hash = 1359566056)
+    public Unicorn(String id, @NotNull String name, int age, @NotNull String colour) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.colour = colour;
@@ -59,6 +52,10 @@ public class Unicorn {
     public Unicorn() {
     }
 
+    public void generateId() {
+        id = UUID.randomUUID().toString();
+    }
+    
     @BindingAdapter("android:setColor")
     public static void setColor(View view, String color) {
         int _color = ColorUtil.getColor(view.getContext(), color);
@@ -70,16 +67,7 @@ public class Unicorn {
         if(!(obj instanceof Unicorn)) return false;
         return this.age == ((Unicorn) obj).age &&
                 this.name.equals(((Unicorn) obj).name) &&
-                this._id.equals(((Unicorn) obj)._id) &&
                 this.colour.equals(((Unicorn) obj).colour);
-    }
-
-    public String get_id() {
-        return this._id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
     }
 
     public String getName() {
@@ -104,5 +92,13 @@ public class Unicorn {
 
     public void setColour(String colour) {
         this.colour = colour;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
