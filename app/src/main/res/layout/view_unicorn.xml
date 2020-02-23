@@ -4,6 +4,7 @@
         <import type="com.unicorns.unicorns.utils.StringUtil"/>
         <import type="com.unicorns.unicorns.utils.ColorUtil"/>
         <import type="com.unicorns.unicorns.interfaces.IMainActivity"/>
+        <import type="com.unicorns.unicorns.utils.ImageUtil"/>
         <variable
             name="unicorn"
             type="com.unicorns.unicorns.database.Unicorn"/>
@@ -19,6 +20,14 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingBottom="10dp">
+            <ImageView
+                android:id="@+id/image_view_unicorn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"
+                android:layout_marginBottom="10dp"
+                android:setImage="@{unicorn.colour}"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

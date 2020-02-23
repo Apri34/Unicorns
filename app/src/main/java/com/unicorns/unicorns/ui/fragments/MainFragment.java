@@ -1,10 +1,13 @@
 package com.unicorns.unicorns.ui.fragments;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.unicorns.unicorns.utils.ImageUtil;
 import com.unicorns.unicorns.utils.MarginItemDecoration;
 import com.unicorns.unicorns.R;
 import com.unicorns.unicorns.adapters.UnicornAdapter;
@@ -17,6 +20,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;

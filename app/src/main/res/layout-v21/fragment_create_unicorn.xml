@@ -9,14 +9,8 @@
             name="iMainActivity"
             type="com.unicorns.unicorns.interfaces.IMainActivity" />
         <variable
-            name="editTextName"
-            type="android.widget.EditText" />
-        <variable
-            name="editTextAge"
-            type="android.widget.EditText" />
-        <variable
-            name="spinnerColor"
-            type="android.widget.Spinner" />
+            name="unicorn"
+            type="com.unicorns.unicorns.database.Unicorn" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,16 +19,14 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
 
-        <TextView
-            android:id="@+id/text_view_create_unicorn_fragment_header"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/image_view_create_unicorn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/create_a_unicorn"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:contentDescription="@null"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/linear_layout_create_unicorn_fragment_fields"
+            android:setImage="@{unicorn.colour}"/>
 
         <LinearLayout
             android:id="@+id/linear_layout_create_unicorn_fragment_fields"
@@ -42,44 +34,41 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.75"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/text_view_create_unicorn_fragment_name"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/name"/>
+                android:hint="@string/name">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_create_unicorn_fragment_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edit_text_create_unicorn_fragment_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/text_view_create_unicorn_fragment_age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/age"
-                android:layout_marginTop="16dp"/>
-
-            <EditText
-                android:id="@+id/edit_text_create_unicorn_fragment_age"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:layout_marginTop="16dp"
+                android:hint="@string/age">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_create_unicorn_fragment_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/text_view_create_unicorn_fragment_color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/color"
-                android:layout_marginTop="16dp"/>
-
-            <Spinner
+            <fr.ganfra.materialspinner.MaterialSpinner
                 android:id="@+id/spinner_create_unicorn_fragment_color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/colors"/>
+                android:layout_marginTop="16dp"
+                app:ms_hint="@string/color"
+                app:ms_enableFloatingLabel="true"
+                app:ms_floatingLabelText="@string/color"
+                app:ms_floatingLabelColor="@color/colorAccent"
+                android:entries="@array/colors" />
         </LinearLayout>
 
         <ImageButton
@@ -94,7 +83,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="20dp"
             android:contentDescription="@null"
-            android:onClick="@{() -> iMainActivity.createUnicorn(editTextName.getText().toString(), editTextAge.getText().toString(), spinnerColor.getSelectedItem().toString())}"
+            android:onClick="@{() -> iMainActivity.createUnicorn(unicorn.name, unicorn.age, unicorn.colour)}"
             android:elevation="4dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 /**
@@ -44,6 +45,19 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Co
         //Initialize ViewModel to get UI relevant data
         mUnicornViewModel = ViewModelProviders.of(this).get(UnicornViewModel.class);
         mUnicornViewModel.init();
+
+        // Change the title when fragment is changed
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                if(getSupportActionBar() == null) return;
+                if(createUnicornFragment.isAdded()) {
+                    getSupportActionBar().setTitle(getString(R.string.create_a_unicorn));
+                } else {
+                    getSupportActionBar().setTitle(getString(R.string.app_name));
+                }
+            }
+        });
 
         //Instantiate the fragments
         if(savedInstanceState == null) {
@@ -72,35 +86,25 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Co
 
     //This method is called when the Button in CreateUnicornFragment is pressed
     @Override
-    public void createUnicorn(String name, String _age, String color) {
+    public void createUnicorn(String name, int age, String color) {
         //Check if the unicorn has been given a correct name
         if(name.length() == 0) {
             Toast.makeText(this, "Unicorns usually have a name!", Toast.LENGTH_LONG).show();
             return;
         }
 
-        //Check if the unicorn has been given a correct age
-        if(_age.length() == 0) {
-            Toast.makeText(this, "How old is " + name + "?", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        int age;
-        try {
-            age = Integer.parseInt(_age);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "This is not a correct age!", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if(age < 0) {
+        if(age <= 0) {
             Toast.makeText(this, "This is not a correct age!", Toast.LENGTH_LONG).show();
             return;
         }
 
         if(age > 30) {
             Toast.makeText(this, "Unicorns usually only get 30 years old!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(color == null) {
+            Toast.makeText(this, "You have to choose a color!", Toast.LENGTH_LONG).show();
             return;
         }
 

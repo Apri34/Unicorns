@@ -4,7 +4,6 @@
 
     <data>
         <import type="com.unicorns.unicorns.interfaces.IMainActivity"/>
-        <import type="com.unicorns.unicorns.utils.ImageUtil"/>
 
         <variable
             name="iMainActivity"
@@ -22,20 +21,22 @@
 
         <ImageView
             android:id="@+id/image_view_create_unicorn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:contentDescription="@null"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/linear_layout_create_unicorn_fragment_fields"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/linear_layout_create_unicorn_fragment_fields"
             android:setImage="@{unicorn.colour}"/>
 
         <LinearLayout
             android:id="@+id/linear_layout_create_unicorn_fragment_fields"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.75"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/image_view_create_unicorn"
+            android:layout_marginEnd="20dp"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -45,14 +46,14 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_create_unicorn_fragment_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/age"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                android:hint="@string/age">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_create_unicorn_fragment_age"
                     android:layout_width="match_parent"
@@ -66,8 +67,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:ms_hint="@string/color"
-                app:ms_enableFloatingLabel="false"
-                android:entries="@array/colors"/>
+                app:ms_enableFloatingLabel="true"
+                app:ms_floatingLabelText="@string/color"
+                app:ms_floatingLabelColor="@color/colorAccent"
+                android:entries="@array/colors" />
         </LinearLayout>
 
         <ImageButton
@@ -82,7 +85,8 @@
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="20dp"
             android:contentDescription="@null"
-            android:onClick="@{() -> iMainActivity.createUnicorn(unicorn.name, unicorn.age, unicorn.colour)}" />
+            android:onClick="@{() -> iMainActivity.createUnicorn(unicorn.name, unicorn.age, unicorn.colour)}"
+            android:elevation="4dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

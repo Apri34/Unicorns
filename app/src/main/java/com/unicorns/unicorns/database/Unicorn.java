@@ -1,8 +1,12 @@
 package com.unicorns.unicorns.database;
 
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.unicorns.unicorns.utils.ColorUtil;
+import com.unicorns.unicorns.utils.ImageUtil;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
@@ -59,7 +63,17 @@ public class Unicorn {
     @BindingAdapter("android:setColor")
     public static void setColor(View view, String color) {
         int _color = ColorUtil.getColor(view.getContext(), color);
-        ((CardView) view).setCardBackgroundColor(_color);
+        GradientDrawable d = new GradientDrawable();
+        d.setShape(GradientDrawable.RECTANGLE);
+        d.setCornerRadii(new float[] {8, 8, 8, 8, 0, 0, 0, 0});
+        d.setStroke(8, _color);
+        view.setBackground(d);
+    }
+
+    @BindingAdapter("android:setImage")
+    public static void setImage(View view, String color) {
+        Drawable d = ImageUtil.getImage(view.getContext(), color);
+        ((ImageView) view).setImageDrawable(d);
     }
 
     @Override

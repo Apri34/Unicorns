@@ -22,8 +22,6 @@ public class ColorUtil {
         } else if(color.equals(array[2])) {
             return ContextCompat.getColor(context, android.R.color.holo_purple);
         } else if(color.equals(array[3])) {
-            return ContextCompat.getColor(context, android.R.color.white);
-        } else if(color.equals(array[4])) {
             return ContextCompat.getColor(context, R.color.yellow);
         } else {
             return android.R.color.transparent;

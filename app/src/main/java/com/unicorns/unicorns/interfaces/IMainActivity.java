@@ -8,6 +8,6 @@ import com.unicorns.unicorns.database.Unicorn;
 
 public interface IMainActivity {
     void addUnicorn();
-    void createUnicorn(String name, String _age, String color);
+    void createUnicorn(String name, int age, String color);
     void showDeleteDialog(Unicorn unicorn);
 }
