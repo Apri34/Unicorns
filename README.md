@@ -7,6 +7,10 @@ I created this app due to a Job interview. During the process, I learned a lot o
 ## Getting started
 This project uses the Gradle build system. To build this project, use the gradlew build command or use "Import Project" in Android Studio.
 
+## Screenshots
+![](images/Screenshot1.png)
+![](images/Screenshot2.png)
+
 ## Libraries used
 * [AppCompat](https://developer.android.com/topic/libraries/support-library/packages)
 * [GreenDao](http://greenrobot.org/greendao/) to create the local database.
