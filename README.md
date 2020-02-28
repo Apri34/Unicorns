@@ -1,5 +1,5 @@
 # Unicorns
-This is an Android App to create and delete Unicorns. It is developed in Java.
+This is an Android App to create and delete Unicorns. It is developed in Java. The Unicorns are saved locally on the device and online on a webserver.
 
 ## Motivation
 I created this app due to a Job interview. During the process, I learned a lot of new things, and this is why I use the app to supplement my portfolio.
